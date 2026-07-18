@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conjectura de Collatz</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #b1cfc5;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .container {
+            width: 700px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        input {
+            padding: 10px;
+            width: 200px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            text-align: left;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    
+
+<div class="container">
+    <h1>Conjectura de Collatz</h1>
+
+    <p>Digite um número inteiro positivo:</p>
+
+    <input type="number" id="numero" min="1">
+    <button onclick="calcularCollatz()">Calcular</button>
+
+    <div id="resultado"></div>
+</div>
+
+<script>
+function calcularCollatz() {
+
+    let numero = parseInt(document.getElementById("numero").value);
+
+    if (isNaN(numero) || numero <= 0) {
+        alert("Digite um número inteiro positivo.");
+        return;
+    }
+
+    let sequencia = [numero];
+    let passos = 0;
+
+    while (numero !== 1) {
+
+        if (numero % 2 === 0) {
+            numero = numero / 2;
+        } else {
+            numero = numero * 3 + 1;
+        }
+
+        sequencia.push(numero);
+        passos++;
+    }
+
+    document.getElementById("resultado").innerHTML =
+        "<h3>Resultado</h3>" +
+        "<p><strong>Quantidade de passos:</strong> " + passos + "</p>" +
+        "<p><strong>Sequência:</strong><br>" +
+        sequencia.join(" → ") +
+        "</p>";
+}
+</script>
+
+</body>
+</html>
+<footer>By Pedro P M with the help of ChatGPT</footer>
